@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>按摩助手 — 自動填入治療筆記</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'Helvetica Neue',sans-serif;background:#0d1117;color:#c9d1d9;min-height:100vh}
+
+  /* Hero */
+  .hero{text-align:center;padding:80px 24px 60px;max-width:720px;margin:0 auto}
+  .badge{display:inline-block;background:#1a4731;color:#56d364;border:1px solid #238636;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:20px}
+  .hero h1{font-size:42px;font-weight:800;color:#f0f6ff;line-height:1.2;margin-bottom:16px}
+  .hero h1 span{color:#58a6ff}
+  .hero p{font-size:17px;color:#8b949e;line-height:1.7;max-width:540px;margin:0 auto}
+
+  /* Features */
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:840px;margin:60px auto;padding:0 24px}
+  @media(max-width:640px){.features{grid-template-columns:1fr}}
+  .feat{background:#161b22;border:1px solid #21262d;border-radius:12px;padding:24px}
+  .feat-icon{font-size:28px;margin-bottom:12px}
+  .feat h3{font-size:14px;font-weight:700;color:#e6edf3;margin-bottom:8px}
+  .feat p{font-size:12px;color:#8b949e;line-height:1.6}
+
+  /* Pricing */
+  .pricing{max-width:480px;margin:0 auto;padding:0 24px 80px}
+  .card{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:36px;text-align:center}
+  .card.highlight{border-color:#238636;box-shadow:0 0 0 1px #238636}
+  .price{font-size:52px;font-weight:800;color:#f0f6ff;line-height:1}
+  .price sup{font-size:22px;vertical-align:top;margin-top:10px;color:#8b949e}
+  .price sub{font-size:16px;color:#8b949e;font-weight:400}
+  .price-label{font-size:13px;color:#56d364;margin:8px 0 24px;font-weight:600}
+  .perks{list-style:none;text-align:left;margin-bottom:28px}
+  .perks li{font-size:13px;color:#8b949e;padding:6px 0;border-bottom:1px solid #21262d;display:flex;align-items:center;gap:10px}
+  .perks li::before{content:'✓';color:#56d364;font-weight:700;font-size:14px;flex-shrink:0}
+
+  /* Purchase form */
+  .purchase-form{margin-bottom:16px}
+  .purchase-form label{display:block;text-align:left;font-size:12px;color:#8b949e;margin-bottom:6px;font-weight:600}
+  .purchase-form input{width:100%;padding:12px 14px;background:#0d1117;border:1px solid #30363d;border-radius:8px;color:#e6edf3;font-size:14px;outline:none;transition:.2s}
+  .purchase-form input:focus{border-color:#58a6ff}
+  .purchase-form input::placeholder{color:#4a4f5a}
+
+  .btn-buy{width:100%;padding:14px;background:linear-gradient(135deg,#1a4731,#238636);color:#56d364;font-size:15px;font-weight:800;border:1px solid #238636;border-radius:8px;cursor:pointer;transition:.15s;margin-top:12px}
+  .btn-buy:hover{filter:brightness(1.1)}
+  .btn-buy:active{transform:scale(.98)}
+  .btn-buy:disabled{opacity:.6;cursor:not-allowed}
+
+  .note{font-size:11px;color:#6e7681;margin-top:12px;line-height:1.5}
+
+  /* Status msg */
+  .status{padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;display:none}
+  .status.ok{background:#1a4731;border:1px solid #238636;color:#56d364;display:block}
+  .status.err{background:#3d1c1c;border:1px solid #6e1c1c;color:#f85149;display:block}
+  .status.loading{background:#1c2333;border:1px solid #30363d;color:#58a6ff;display:block}
+
+  /* Steps */
+  .steps-section{max-width:720px;margin:0 auto;padding:0 24px 80px}
+  .steps-section h2{text-align:center;font-size:22px;font-weight:700;color:#e6edf3;margin-bottom:32px}
+  .steps{display:flex;flex-direction:column;gap:0}
+  .step-item{display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid #21262d}
+  .step-item:last-child{border-bottom:none}
+  .step-num{width:36px;height:36px;border-radius:50%;background:#1c2333;border:1px solid #30363d;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#58a6ff;flex-shrink:0}
+  .step-content h4{font-size:14px;font-weight:700;color:#e6edf3;margin-bottom:4px}
+  .step-content p{font-size:12px;color:#8b949e;line-height:1.6}
+  .step-content code{background:#1c2333;padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11px;color:#79c0ff}
+
+  /* Footer */
+  footer{text-align:center;padding:32px 24px;font-size:12px;color:#6e7681;border-top:1px solid #21262d}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">Chrome Extension · mybookrelax.com</div>
+  <h1>治療筆記<span>自動填入</span><br>省下每週數小時</h1>
+  <p>專為澳洲按摩治療師設計，一鍵自動填入 Examination、Symptom、Treatment Area、Method、Outcome、Comment，每位客人平均節省 4 分鐘。</p>
+</div>
+
+<div class="features">
+  <div class="feat">
+    <div class="feat-icon">⚡</div>
+    <h3>全自動填寫</h3>
+    <p>按下開始，自動處理所有標記 🔴 的客人，完整填入六個欄位</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">🗓️</div>
+    <h3>歷史週批次</h3>
+    <p>自動切換上一週，批量補填數週的治療記錄，從此不再積壓</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">🎯</div>
+    <h3>智能範本</h3>
+    <p>上半身 / 下半身 / 全身三組預設，依治療時長（30/45/60分）自動選組</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">🩻</div>
+    <h3>身體圖辨識</h3>
+    <p>自動掃描 SVG 身體圖紅圈位置，對應正確肌肉名稱填入</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">🔑</div>
+    <h3>安全授權</h3>
+    <p>License Key 驗證系統，確保授權有效期內正常使用</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">⚙️</div>
+    <h3>完全可自定義</h3>
+    <p>所有範本內容可在 popup 設定頁自由修改，符合個人用語習慣</p>
+  </div>
+</div>
+
+<div class="pricing">
+  <div class="card highlight">
+    <div class="price"><sup>$</sup>10<sub> AUD/月</sub></div>
+    <div class="price-label">每天只需 $0.33 AUD · 隨時可取消</div>
+    <ul class="perks">
+      <li>全功能無限制使用（每月自動續費）</li>
+      <li>所有欄位自動填入</li>
+      <li>歷史週批次處理</li>
+      <li>智能範本 3 組 × 3 時段</li>
+      <li>身體圖 + Complaint 辨識</li>
+      <li>Email 技術支援</li>
+      <li>免費版本更新</li>
+      <li>隨時可取消，無綁約</li>
+    </ul>
+
+    <div class="purchase-form">
+      <label>你的 Email（授權碼將寄到這裡）</label>
+      <input type="email" id="emailInput" placeholder="your@email.com" required>
+    </div>
+
+    <button class="btn-buy" id="buyBtn" onclick="handlePurchase()">立即購買 →</button>
+    <div class="status" id="statusMsg"></div>
+    <p class="note">付款後 30 秒內自動收到授權碼 · 每月自動扣款 · 信用卡 / PayPal · 澳洲 GST 已含</p>
+  </div>
+</div>
+
+<div class="steps-section">
+  <h2>購買後怎麼安裝？</h2>
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>下載 Extension</h4>
+        <p>點擊下方下載按鈕，取得 <code>massage-assistant.zip</code>，解壓縮到任意資料夾（建議桌面）</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Chrome 載入</h4>
+        <p>開啟 Chrome → 網址列輸入 <code>chrome://extensions</code> → 右上角開啟「開發人員模式」→ 點「載入未封裝項目」→ 選解壓縮的資料夾</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>付款取得授權碼</h4>
+        <p>在上方輸入 Email 並完成付款，30 秒內自動寄出 License Key 到你的信箱</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>輸入授權碼</h4>
+        <p>點 Chrome 右上角的 🖐 圖示 → 設定 → 貼上授權碼 → 點驗證 → 按鈕解鎖變綠色</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>開始使用</h4>
+        <p>前往 mybookrelax.com Work 清單頁 → 點「開始自動填入」→ 坐著喝咖啡等它跑完</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px">
+    <a href="GOOGLE_DRIVE_ZIP_LINK" style="display:inline-block;padding:12px 28px;background:#1c2333;border:1px solid #30363d;color:#58a6ff;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600">⬇ 下載 Extension（免費）</a>
+  </div>
+</div>
+
+<footer>
+  按摩助手 v5.5 · 只相容 mybookrelax.com · 問題請聯繫 sky074064@gmail.com
+</footer>
+
+<script>
+  // 付款流程：收 email → 儲存 → 跳轉 Gumroad（Gumroad 會再次收 email 確認）
+  // Gumroad 付款完成後 webhook → n8n → 寄 key 到 email
+
+  const GUMROAD_URL = 'https://YOUR_GUMROAD_PRODUCT_URL'; // ← 換成你的 Gumroad 產品連結
+  const N8N_COLLECT_URL = 'https://sky074064.app.n8n.cloud/webhook/massage-purchase'; // ← 可選：先記錄 email
+
+  function showStatus(msg, type) {
+    const el = document.getElementById('statusMsg');
+    el.textContent = msg;
+    el.className = 'status ' + type;
+  }
+
+  async function handlePurchase() {
+    const email = document.getElementById('emailInput').value.trim();
+    const btn = document.getElementById('buyBtn');
+
+    if (!email || !email.includes('@')) {
+      showStatus('請輸入有效的 Email 地址', 'err');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '處理中...';
+    showStatus('正在準備付款頁面...', 'loading');
+
+    // 記錄 email（可選，用於 Gumroad 未收到 webhook 時的備援）
+    try {
+      await fetch(N8N_COLLECT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, action: 'pre_purchase', timestamp: new Date().toISOString() }),
+        mode: 'no-cors'
+      });
+    } catch(e) { /* 靜默失敗，不影響主流程 */ }
+
+    // 跳轉 Gumroad，帶入 email 預填
+    const gumroadUrl = GUMROAD_URL + (GUMROAD_URL.includes('?') ? '&' : '?') + 'email=' + encodeURIComponent(email);
+
+    showStatus('正在前往付款頁面...', 'ok');
+    setTimeout(() => {
+      window.open(gumroadUrl, '_blank');
+      btn.disabled = false;
+      btn.textContent = '立即購買 →';
+      showStatus('付款完成後請查收 Email（可能在垃圾郵件）', 'ok');
+    }, 800);
+  }
+
+  // Enter 鍵觸發
+  document.getElementById('emailInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handlePurchase();
+  });
+</script>
+</body>
+</html>

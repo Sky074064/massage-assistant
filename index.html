@@ -2,290 +2,303 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Massage Assistant — Auto Fill Treatment Notes</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Massage Assistant — Auto Fill Treatment Notes | mybookrelax.com</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,'Helvetica Neue',sans-serif;background:#0d1117;color:#c9d1d9;min-height:100vh}
-a{color:inherit;text-decoration:none}
-
-/* Hero */
-.hero{text-align:center;padding:72px 24px 56px;max-width:720px;margin:0 auto}
-.badge{display:inline-block;background:#1a4731;color:#56d364;border:1px solid #238636;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:20px}
-.hero h1{font-size:clamp(28px,5vw,48px);font-weight:800;color:#f0f6ff;line-height:1.15;margin-bottom:14px}
-.hero h1 span{color:#58a6ff}
-.hero p{font-size:16px;color:#8b949e;line-height:1.7;max-width:520px;margin:0 auto 28px}
-.cta-group{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:12px}
-.btn-install{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:#58a6ff;color:#0d1117;font-size:15px;font-weight:800;border-radius:10px;cursor:pointer;border:none;transition:.15s}
-.btn-install:hover{background:#79c0ff}
-.btn-install img{width:20px;height:20px}
-.btn-pay{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#1a4731,#238636);color:#56d364;font-size:15px;font-weight:800;border:1px solid #238636;border-radius:10px;cursor:pointer}
-.btn-pay:hover{filter:brightness(1.1)}
-.hero-note{font-size:11px;color:#6e7681}
-
-/* Features */
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:840px;margin:0 auto 80px;padding:0 24px}
-@media(max-width:640px){.features{grid-template-columns:1fr}}
-.feat{background:#161b22;border:1px solid #21262d;border-radius:12px;padding:22px}
-.feat-icon{font-size:26px;margin-bottom:10px}
+:root{--bg:#0d1117;--bg2:#161b22;--bg3:#010409;--border:#21262d;--green:#238636;--green2:#56d364;--blue:#58a6ff;--text:#c9d1d9;--muted:#8b949e;--dim:#6e7681;--gold:#d29922}
+body{font-family:-apple-system,'Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--blue);text-decoration:none}
+/* NAV */
+nav{background:var(--bg3);border-bottom:1px solid var(--border);padding:12px 32px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.nav-logo{font-size:22px}.nav-name{font-size:15px;font-weight:800;color:var(--blue)}
+.nav-badge{font-size:10px;background:#1a4731;color:var(--green2);border:1px solid var(--green);padding:2px 8px;border-radius:20px;font-weight:700}
+.nav-right{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn-install{padding:8px 18px;background:var(--blue);color:var(--bg);font-size:13px;font-weight:800;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;gap:6px}
+.btn-install:hover{opacity:.9}
+/* HERO */
+.hero{text-align:center;padding:80px 24px 60px;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-block;background:#1a4731;color:var(--green2);border:1px solid var(--green);padding:5px 16px;font-size:11px;font-weight:700;letter-spacing:1.5px;border-radius:20px;margin-bottom:24px}
+.hero h1{font-size:clamp(30px,5vw,52px);font-weight:800;color:#f0f6ff;line-height:1.12;margin-bottom:16px}
+.hero h1 em{color:var(--blue);font-style:normal}
+.hero-sub{font-size:17px;color:var(--muted);max-width:540px;margin:0 auto 32px;line-height:1.7}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.btn-primary{padding:15px 32px;background:var(--blue);color:var(--bg);font-size:15px;font-weight:800;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;gap:8px}
+.btn-primary:hover{opacity:.9}
+.btn-secondary{padding:15px 32px;background:linear-gradient(135deg,#1a4731,var(--green));color:var(--green2);font-size:15px;font-weight:800;border:1px solid var(--green);border-radius:10px;cursor:pointer}
+.btn-secondary:hover{filter:brightness(1.1)}
+.hero-note{font-size:12px;color:var(--dim)}
+/* DEMO LOG */
+.demo-wrap{max-width:680px;margin:0 auto 80px;padding:0 24px}
+.demo-box{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px;font-family:'SF Mono','Fira Code',monospace;font-size:11px;line-height:1.8;color:var(--muted)}
+.log-ok{color:var(--green2)}.log-blue{color:var(--blue);font-weight:700}.log-warn{color:var(--gold)}.log-dim{color:var(--dim)}
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin:0 auto 80px;padding:0 24px}
+@media(max-width:680px){.feat-grid{grid-template-columns:1fr}}
+.feat{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px}
+.feat-icon{font-size:24px;margin-bottom:10px}
 .feat h3{font-size:13px;font-weight:700;color:#e6edf3;margin-bottom:6px}
-.feat p{font-size:12px;color:#8b949e;line-height:1.6}
-
-/* Pricing */
-.pricing-section{max-width:600px;margin:0 auto 80px;padding:0 24px;text-align:center}
-.pricing-section h2{font-size:22px;font-weight:800;color:#f0f6ff;margin-bottom:8px}
-.pricing-section .sub{font-size:13px;color:#8b949e;margin-bottom:28px}
-.price-free-banner{background:#1c1a0a;border:1px solid #3d2f00;border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:12px;color:#d29922}
-.pricing-cards{display:flex;gap:14px;margin-bottom:20px}
-@media(max-width:500px){.pricing-cards{flex-direction:column}}
-.price-card{flex:1;background:#161b22;border:1px solid #30363d;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:.15s;position:relative}
-.price-card:hover{border-color:#238636;transform:translateY(-2px)}
-.price-card.popular{border-color:#238636}
-.pop-label{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#238636;color:#f0f6ff;font-size:10px;font-weight:700;padding:2px 12px;border-radius:20px;white-space:nowrap}
-.price-amount{font-size:42px;font-weight:800;color:#f0f6ff;line-height:1}
-.price-amount sup{font-size:18px;vertical-align:top;margin-top:8px;color:#8b949e}
-.price-cycle{font-size:12px;color:#8b949e;margin-bottom:4px}
-.price-notes{font-size:13px;font-weight:700;color:#56d364;margin-bottom:16px}
-.price-perks{list-style:none;text-align:left;font-size:12px;color:#8b949e;line-height:2}
-.price-perks li::before{content:'✓ ';color:#56d364}
-.price-btn{width:100%;margin-top:16px;padding:11px;background:linear-gradient(135deg,#1a4731,#238636);color:#56d364;font-size:13px;font-weight:800;border:1px solid #238636;border-radius:7px;cursor:pointer;font-family:inherit}
+.feat p{font-size:12px;color:var(--muted);line-height:1.6}
+/* PRIORITY SECTION */
+.priority-section{max-width:680px;margin:0 auto 80px;padding:0 24px}
+.section-title{font-size:22px;font-weight:800;color:#f0f6ff;margin-bottom:8px;text-align:center}
+.section-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:28px}
+.priority-list{display:flex;flex-direction:column;gap:0}
+.priority-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.priority-item:last-child{border:none}
+.p-num{min-width:32px;height:32px;border-radius:50%;background:#1c2d4a;border:1px solid var(--blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--blue);flex-shrink:0}
+.p-content h4{font-size:13px;font-weight:700;color:#e6edf3;margin-bottom:4px}
+.p-content p{font-size:12px;color:var(--muted);line-height:1.6}
+.p-tag{display:inline-block;background:#1c2d4a;color:var(--blue);border:1px solid #30363d;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;margin-right:4px}
+/* PRICING */
+.pricing-section{max-width:640px;margin:0 auto 80px;padding:0 24px;text-align:center}
+.free-banner{background:#1c1a0a;border:1px solid #3d2f00;border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:12px;color:var(--gold)}
+.price-cards{display:flex;gap:14px;margin-bottom:14px}
+@media(max-width:500px){.price-cards{flex-direction:column}}
+.price-card{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:.15s;position:relative}
+.price-card:hover{border-color:var(--green);transform:translateY(-2px)}
+.price-card.pop{border-color:var(--green)}
+.pop-tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--green);color:#f0f6ff;font-size:10px;font-weight:700;padding:2px 12px;border-radius:20px;white-space:nowrap}
+.price-amount{font-size:42px;font-weight:800;color:#f0f6ff}
+.price-amount sup{font-size:18px;vertical-align:top;margin-top:8px;color:var(--muted)}
+.price-cycle{font-size:12px;color:var(--muted)}
+.price-notes{font-size:14px;font-weight:700;color:var(--green2);margin-bottom:14px}
+.price-perks{list-style:none;text-align:left;font-size:12px;color:var(--muted);line-height:2}
+.price-perks li::before{content:'✓ ';color:var(--green2)}
+.price-form{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px}
+.price-form label{display:block;font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:700;text-align:left}
+.price-form input{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:7px;color:#e6edf3;font-size:14px;outline:none;margin-bottom:8px}
+.price-form input:focus{border-color:var(--blue)}
+.price-btn{width:100%;padding:11px;background:linear-gradient(135deg,#1a4731,var(--green));color:var(--green2);font-size:13px;font-weight:800;border:1px solid var(--green);border-radius:7px;cursor:pointer}
 .price-btn:hover{filter:brightness(1.1)}
-
-/* Purchase form */
-.purchase-form{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px;margin-bottom:14px}
-.purchase-form label{display:block;font-size:11px;color:#8b949e;margin-bottom:6px;font-weight:600}
-.purchase-form input{width:100%;padding:10px 12px;background:#0d1117;border:1px solid #30363d;border-radius:7px;color:#e6edf3;font-size:14px;outline:none;margin-bottom:10px}
-.purchase-form input:focus{border-color:#58a6ff}
-.pf-note{font-size:10px;color:#6e7681;margin-top:6px;line-height:1.5}
-
-/* Status */
-.status-msg{padding:9px 12px;border-radius:7px;font-size:12px;margin-top:8px;display:none}
-.status-msg.ok{background:#1a4731;border:1px solid #238636;color:#56d364;display:block}
+.status-msg{padding:8px 12px;border-radius:7px;font-size:12px;margin-top:6px;display:none}
+.status-msg.ok{background:#1a4731;border:1px solid var(--green);color:var(--green2);display:block}
 .status-msg.err{background:#3d1c1c;border:1px solid #6e1c1c;color:#f85149;display:block}
-.status-msg.loading{background:#1c2333;border:1px solid #30363d;color:#58a6ff;display:block}
-
-/* How it works */
-.how-section{max-width:720px;margin:0 auto 80px;padding:0 24px}
-.how-section h2{text-align:center;font-size:22px;font-weight:800;color:#f0f6ff;margin-bottom:32px}
-.steps{display:flex;flex-direction:column;gap:0}
-.step-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #21262d;align-items:flex-start}
+.status-msg.loading{background:#1c2333;border:1px solid var(--border);color:var(--blue);display:block}
+/* HOW TO */
+.how-section{max-width:680px;margin:0 auto 80px;padding:0 24px}
+.step-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);align-items:flex-start}
 .step-item:last-child{border:none}
-.step-num{width:30px;height:30px;border-radius:50%;background:#1c2333;border:1px solid #30363d;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#58a6ff;flex-shrink:0}
+.step-num{min-width:28px;height:28px;border-radius:50%;background:#1c2333;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--blue);flex-shrink:0}
 .step-content h4{font-size:13px;font-weight:700;color:#e6edf3;margin-bottom:3px}
-.step-content p{font-size:12px;color:#8b949e;line-height:1.6}
-.step-content code{background:#1c2333;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;color:#79c0ff}
-
-/* Referral */
-.referral-section{max-width:560px;margin:0 auto 80px;padding:0 24px;text-align:center}
-.ref-card{background:#161b22;border:1px solid #21262d;border-radius:14px;padding:28px}
-.ref-icon{font-size:32px;margin-bottom:12px}
-.ref-card h2{font-size:18px;font-weight:800;color:#f0f6ff;margin-bottom:8px}
-.ref-card p{font-size:12px;color:#8b949e;line-height:1.6;margin-bottom:16px}
-.ref-highlight{background:#0d2318;border:1px solid #238636;border-radius:8px;padding:10px 16px;font-size:12px;color:#56d364;margin-bottom:16px}
-
-/* Disclaimer */
-.disclaimer{max-width:720px;margin:0 auto 40px;padding:0 24px}
-.disclaimer-box{background:#1c1400;border:1px solid #3d2f00;border-radius:8px;padding:14px 18px;font-size:12px;color:#d29922;line-height:1.7}
-
-/* Footer */
-footer{text-align:center;padding:28px 24px;font-size:11px;color:#6e7681;border-top:1px solid #21262d}
+.step-content p{font-size:12px;color:var(--muted);line-height:1.6}
+.step-content code{background:#1c2333;padding:2px 6px;border-radius:4px;font-family:monospace;font-size:11px;color:var(--blue)}
+/* REFERRAL */
+.ref-section{max-width:560px;margin:0 auto 80px;padding:0 24px;text-align:center}
+.ref-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:28px}
+.ref-highlight{background:#0d2318;border:1px solid var(--green);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--green2);margin:14px 0;display:none}
+.ref-highlight.show{display:block}
+/* DISCLAIMER */
+.disclaimer{max-width:680px;margin:0 auto 40px;padding:0 24px}
+.disclaimer-box{background:#1c1400;border:1px solid #3d2f00;border-radius:8px;padding:14px 18px;font-size:12px;color:var(--gold);line-height:1.7}
+/* FOOTER */
+footer{text-align:center;padding:28px 24px;font-size:11px;color:var(--dim);border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
 
+<nav>
+  <span class="nav-logo">🖐</span>
+  <span class="nav-name">Massage Assistant</span>
+  <span class="nav-badge">v6.0</span>
+  <div class="nav-right">
+    <a class="btn-install" href="https://chrome.google.com/webstore/detail/jdobaapefedhjokgbedlpghedhjibjhm" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#fff"/><circle cx="12" cy="12" r="4" fill="#4285F4"/><path d="M12 8a4 4 0 0 1 3.46 2H20a8 8 0 1 0 0 4h-4.54A4 4 0 1 1 12 8z" fill="#4285F4" opacity=".3"/></svg>
+      Add to Chrome
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
 <div class="hero">
-  <div class="badge">Chrome Extension · mybookrelax.com</div>
-  <h1>Treatment Notes<br><span>Auto-Filled</span> in Seconds</h1>
-  <p>Built for Australian massage therapists. One click fills Examination, Symptom, Treatment Area, Method, Outcome and Comment — saving 4+ minutes per client.</p>
-  <div class="cta-group">
-    <a class="btn-install" id="btnWebStore" href="https://chrome.google.com/webstore/detail/massage-assistant" target="_blank">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#fff"/><circle cx="12" cy="12" r="4" fill="#4285F4"/><path d="M12 8a4 4 0 0 1 3.46 2H20a8 8 0 1 0 0 4h-4.54A4 4 0 1 1 12 8z" fill="#4285F4" opacity=".3"/></svg>
+  <div class="hero-badge">CHROME EXTENSION · MYBOOKRELAX.COM</div>
+  <h1>Treatment Notes<br><em>Auto-Filled</em> in Seconds</h1>
+  <p class="hero-sub">Built for Australian massage therapists on mybookrelax.com — one click fills all 6 fields using your body chart, complaint text, and saved templates.</p>
+  <div class="cta-row">
+    <a class="btn-primary" href="https://chrome.google.com/webstore/detail/jdobaapefedhjokgbedlpghedhjibjhm" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#fff"/><circle cx="12" cy="12" r="4" fill="#0d1117"/></svg>
       Add to Chrome — Free
     </a>
-    <button class="btn-pay" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
-      💳 View Pricing
-    </button>
+    <button class="btn-secondary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">💳 View Pricing</button>
   </div>
-  <p class="hero-note">Free 20 notes to try · No credit card required to install</p>
+  <p class="hero-note">Free 10 notes to try · No credit card required</p>
 </div>
 
-<!-- Features -->
-<div class="features">
-  <div class="feat"><div class="feat-icon">⚡</div><h3>Auto-Fill 6 Fields</h3><p>Fills Examination, Symptom, Treatment Area, Method, Outcome and Comment automatically</p></div>
-  <div class="feat"><div class="feat-icon">🗓️</div><h3>Batch Past Weeks</h3><p>Catch up on overdue notes across multiple weeks in one run</p></div>
-  <div class="feat"><div class="feat-icon">🎯</div><h3>5 Template Slots</h3><p>A/B/C/D/E slots for different treatment styles — 30/45/60 min each</p></div>
-  <div class="feat"><div class="feat-icon">🦴</div><h3>Muscle Picker</h3><p>Browse 130+ muscles by body region and insert directly into Treatment Area</p></div>
+<!-- DEMO LOG -->
+<div class="demo-wrap">
+  <div class="demo-box">
+    <div class="log-blue">🚀 v6.0 starting...</div>
+    <div class="log-ok">══ Week 1: 13/04/2026 ~ 19/04/2026 ══</div>
+    <div class="log-ok">╔══ Miranda Walsh · Remedial massage 60mins</div>
+    <div class="log-dim">  ⏱ Detected 60min → using 60min template</div>
+    <div class="log-ok">  🩻 Body chart: Levator Scapulae, Trapezius Upper, Rhomboid Major</div>
+    <div class="log-ok">  ✨ Priority: Body chart (3 muscles)</div>
+    <div class="log-ok">  ✓ Examination filled</div>
+    <div class="log-ok">  ✓ Treatment Area filled (3 muscles)</div>
+    <div class="log-ok">  ✓ Treatment Method filled</div>
+    <div class="log-ok">  ✓ Outcome filled</div>
+    <div class="log-ok">  ✅ DONE — 1 client complete</div>
+    <div class="log-dim">  🔄 Slot: A → B</div>
+    <div class="log-ok">╔══ Hellen Varveris · Remedial massage 30mins</div>
+    <div class="log-dim">  📋 Complaint: "lower back pain" → Quadratus Lumborum, Erector Spinae</div>
+    <div class="log-ok">  ✓ All 6 fields filled</div>
+    <div class="log-ok">  ✅ DONE — 2 clients complete</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="feat-grid">
+  <div class="feat"><div class="feat-icon">⚡</div><h3>Auto-Fill 6 Fields</h3><p>Fills Examination, Symptom, Treatment Area, Method, Outcome and Comment automatically on every client</p></div>
+  <div class="feat"><div class="feat-icon">🩻</div><h3>Body Chart Detection</h3><p>Reads the circled body areas and smart-matches the corresponding muscles automatically</p></div>
+  <div class="feat"><div class="feat-icon">📋</div><h3>Complaint Detection</h3><p>Reads "lower back pain" or "neck stiffness" and fills the correct muscles for that area</p></div>
+  <div class="feat"><div class="feat-icon">🦴</div><h3>130+ Muscle Picker</h3><p>14 body regions with full muscle lists — click a region to smart-fill all 6 fields at once</p></div>
+  <div class="feat"><div class="feat-icon">📂</div><h3>A/B/C/D/E Slots</h3><p>5 independent template slots that auto-rotate after every Done — set different styles per slot</p></div>
   <div class="feat"><div class="feat-icon">🌐</div><h3>EN / 中文</h3><p>Full interface language switching between English and Traditional Chinese</p></div>
-  <div class="feat"><div class="feat-icon">🔑</div><h3>License System</h3><p>Secure per-install licensing — key delivered automatically within 30s of payment</p></div>
 </div>
 
-<!-- Pricing -->
+<!-- PRIORITY SYSTEM -->
+<div class="priority-section">
+  <div class="section-title">Smart Priority System</div>
+  <p class="section-sub">The extension decides what to fill based on the client's actual data</p>
+  <div class="priority-list">
+    <div class="priority-item">
+      <div class="p-num">1</div>
+      <div class="p-content">
+        <h4>🩻 Body Chart <span class="p-tag">HIGHEST</span></h4>
+        <p>If the client has circled body areas on the body chart, those areas' muscles are used as the Treatment Area — overriding templates completely.</p>
+      </div>
+    </div>
+    <div class="priority-item">
+      <div class="p-num">2</div>
+      <div class="p-content">
+        <h4>📋 Main Complaint text</h4>
+        <p>If the client has written their complaint (e.g. "lower back pain, worse with sitting"), keywords are detected and mapped to the corresponding muscles.</p>
+      </div>
+    </div>
+    <div class="priority-item">
+      <div class="p-num">3</div>
+      <div class="p-content">
+        <h4>📂 Template Slots A–E <span class="p-tag">FALLBACK</span></h4>
+        <p>If neither body chart nor complaint is detected, the current slot template is used. After every Done ✅, the slot auto-rotates: A→B→C→D→E→A.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
 <div class="pricing-section" id="pricing">
-  <h2>Simple Pricing</h2>
-  <p class="sub">Install free · Pay only when you need more notes</p>
-  <div class="price-free-banner">🎁 Free plan: 20 notes to try before you buy</div>
-  <div class="pricing-cards">
+  <div class="section-title">Simple Pricing</div>
+  <p class="section-sub">Install free — pay only when you need more notes</p>
+  <div class="free-banner">🎁 Free plan: 10 notes to try · No card required to install</div>
+  <div class="price-cards">
     <div class="price-card" id="card10">
       <div class="price-amount"><sup>$</sup>10</div>
       <div class="price-cycle">AUD / month</div>
-      <div class="price-notes">150 notes / month</div>
+      <div class="price-notes">150 notes</div>
       <ul class="price-perks">
-        <li>All features unlocked</li>
-        <li>5 template slots A–E</li>
-        <li>Muscle picker</li>
-        <li>Email support</li>
+        <li>All features</li>
+        <li>5 template slots</li>
+        <li>130+ muscle picker</li>
+        <li>Smart priority fill</li>
       </ul>
-      <div class="purchase-form" id="form10">
-        <label>Your Email (key will be sent here)</label>
+      <div class="price-form">
+        <label>Email (key sent here)</label>
         <input type="email" id="email10" placeholder="your@email.com">
-        <button class="price-btn" id="buyBtn10">Buy $10/month →</button>
+        <button class="price-btn" id="btn10">Buy $10/month →</button>
         <div class="status-msg" id="status10"></div>
-        <p class="pf-note">Key sent within 30s · Cancel anytime</p>
       </div>
     </div>
-    <div class="price-card popular" id="card15">
-      <div class="pop-label">Best Value</div>
+    <div class="price-card pop" id="card15">
+      <div class="pop-tag">Best Value</div>
       <div class="price-amount"><sup>$</sup>15</div>
       <div class="price-cycle">AUD / month</div>
-      <div class="price-notes">300 notes / month</div>
+      <div class="price-notes">300 notes</div>
       <ul class="price-perks">
-        <li>All features unlocked</li>
-        <li>5 template slots A–E</li>
-        <li>Muscle picker</li>
-        <li>Priority email support</li>
+        <li>All features</li>
+        <li>5 template slots</li>
+        <li>130+ muscle picker</li>
+        <li>Priority support</li>
       </ul>
-      <div class="purchase-form" id="form15">
-        <label>Your Email (key will be sent here)</label>
+      <div class="price-form">
+        <label>Email (key sent here)</label>
         <input type="email" id="email15" placeholder="your@email.com">
-        <button class="price-btn" id="buyBtn15">Buy $15/month →</button>
+        <button class="price-btn" id="btn15">Buy $15/month →</button>
         <div class="status-msg" id="status15"></div>
-        <p class="pf-note">Key sent within 30s · Cancel anytime</p>
       </div>
     </div>
   </div>
+  <p style="font-size:11px;color:var(--dim);margin-top:8px">Key sent within 30s of payment · Cancel anytime</p>
 </div>
 
-<!-- How it works -->
+<!-- HOW TO -->
 <div class="how-section">
-  <h2>How to Get Started</h2>
-  <div class="steps">
-    <div class="step-item"><div class="step-num">1</div><div class="step-content"><h4>Install from Chrome Web Store</h4><p>Click "Add to Chrome" above — free, no account needed</p></div></div>
-    <div class="step-item"><div class="step-num">2</div><div class="step-content"><h4>Open mybookrelax.com</h4><p>Go to your Work list page. Click the 🖐 icon in Chrome toolbar</p></div></div>
-    <div class="step-item"><div class="step-num">3</div><div class="step-content"><h4>Set up your templates</h4><p>Go to Templates tab → choose A–E slot → use Muscle Picker to build your Treatment Area list → Save</p></div></div>
-    <div class="step-item"><div class="step-num">4</div><div class="step-content"><h4>Buy a plan (when ready)</h4><p>Enter your email above and pay. Key arrives in 30s. Go to Settings → enter key → Verify</p></div></div>
-    <div class="step-item"><div class="step-num">5</div><div class="step-content"><h4>Click Start Auto Fill</h4><p>Extension processes all 🔴 clients automatically. Sit back.</p></div></div>
-  </div>
+  <div class="section-title" style="margin-bottom:24px">How to Get Started</div>
+  <div class="step-item"><div class="step-num">1</div><div class="step-content"><h4>Install from Chrome Web Store</h4><p>Click "Add to Chrome" — free, no account needed. Works only on mybookrelax.com.</p></div></div>
+  <div class="step-item"><div class="step-num">2</div><div class="step-content"><h4>Open mybookrelax.com Work list</h4><p>Click 🖐 in Chrome toolbar → go to <strong>Templates</strong> tab → set up your A–E slot templates</p></div></div>
+  <div class="step-item"><div class="step-num">3</div><div class="step-content"><h4>Use the Muscle Picker</h4><p>Click ✨ Smart mode → tap a body region (Neck, Shoulder, Lower Back...) → all 6 fields auto-fill with clinical content</p></div></div>
+  <div class="step-item"><div class="step-num">4</div><div class="step-content"><h4>Buy a plan when ready</h4><p>Enter email above → pay via Gumroad → key arrives in 30s → Settings → Verify License ✅</p></div></div>
+  <div class="step-item"><div class="step-num">5</div><div class="step-content"><h4>Go to Work list → Start Auto Fill</h4><p>Extension reads body chart + complaint → fills all 6 fields → clicks Done → rotates to next slot automatically</p></div></div>
 </div>
 
-<!-- Referral -->
-<div class="referral-section">
+<!-- REFERRAL -->
+<div class="ref-section">
   <div class="ref-card">
-    <div class="ref-icon">🎁</div>
-    <h2>Refer a Colleague</h2>
-    <p>Share your referral link with another therapist. When they pay for any plan, you get a free $10 (150 notes) key.</p>
-    <div class="ref-highlight" id="refHighlight">Your referral link will appear here after you install the extension</div>
-    <p style="font-size:11px;color:#6e7681">Referral code is generated by your installed extension and is unique to you.</p>
+    <div style="font-size:28px;margin-bottom:10px">🎁</div>
+    <div class="section-title" style="margin-bottom:8px">Refer a Colleague</div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:14px">Share your referral link. When a colleague subscribes, you get <strong style="color:var(--green2)">20 bonus notes</strong> — automatically.</p>
+    <div class="ref-highlight" id="refBox"></div>
+    <p style="font-size:11px;color:var(--dim)">Your unique referral link is generated by the installed extension in Settings → Refer a Friend.</p>
   </div>
 </div>
 
-<!-- Disclaimer -->
+<!-- DISCLAIMER -->
 <div class="disclaimer">
-  <div class="disclaimer-box">⚠️ <strong>Disclaimer:</strong> This tool assists in recording treatments that have actually occurred. Users are responsible for ensuring all content accurately reflects the treatment services provided. Not for generating fictitious records.</div>
+  <div class="disclaimer-box">⚠️ <strong>Disclaimer:</strong> This tool assists in recording treatments that have actually occurred. Users are responsible for ensuring all content accurately reflects the services provided. Not for generating fictitious records. This extension is not affiliated with mybookrelax.com.</div>
 </div>
 
-<footer>
-  Massage Assistant v6.0 · mybookrelax.com only · Questions: sky074064@gmail.com
-</footer>
+<footer>Massage Assistant v6.0 · mybookrelax.com only · Questions: sky074064@gmail.com</footer>
 
 <script>
-// ── 讀取 URL 參數 ──────────────────────────────────────
-const urlParams = new URLSearchParams(window.location.search);
-const REF_CODE  = urlParams.get('ref') || '';
-const PLAN_PARAM = urlParams.get('plan') || '';
+const REF = new URLSearchParams(location.search).get('ref') || '';
+const N8N_LANDING = 'https://sky074064.app.n8n.cloud/webhook/landing-purchase';
 
-const GUMROAD = {
-  '10': 'https://skyautofitf.gumroad.com/l/xlfxtc',
-  '15': 'https://skyautofitf.gumroad.com/l/rywkm'
-};
-
-const N8N_COLLECT = 'https://sky074064.app.n8n.cloud/webhook/landing-purchase';
-const N8N_REF_LOG = 'https://sky074064.app.n8n.cloud/webhook/ref-visit';
-
-// ── 記錄推薦訪問 ───────────────────────────────────────
-if(REF_CODE){
-  fetch(N8N_REF_LOG,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({refCode:REF_CODE,action:'visit',timestamp:new Date().toISOString()}),
-    mode:'no-cors'
+if(REF){
+  sessionStorage.setItem('refCode', REF);
+  const box = document.getElementById('refBox');
+  if(box){ box.textContent = `You were referred! Code: ${REF}`; box.classList.add('show'); }
+  fetch('https://sky074064.app.n8n.cloud/webhook/ref-visit',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({refCode:REF,action:'visit'}),mode:'no-cors'
   }).catch(()=>{});
-  // 把 ref code 存到 sessionStorage，付款時一起送
-  sessionStorage.setItem('refCode', REF_CODE);
-  // 顯示推薦區說明
-  const rh = document.getElementById('refHighlight');
-  if(rh) rh.textContent = `You were referred by a friend! Your referral code: ${REF_CODE}`;
 }
 
-// ── 如果帶了 plan 參數，自動滾到對應方案 ──────────────
-if(PLAN_PARAM){
-  setTimeout(()=>{
-    const el = document.getElementById('pricing');
-    if(el) el.scrollIntoView({behavior:'smooth'});
-  }, 500);
-}
+const GUMROAD = {'10':'https://skyautofitf.gumroad.com/l/xlfxtc','15':'https://skyautofitf.gumroad.com/l/rywkm'};
 
-// ── 購買流程 ────────────────────────────────────────────
-function handlePurchase(plan){
+function buy(plan){
   const emailEl = document.getElementById('email'+plan);
   const statusEl = document.getElementById('status'+plan);
-  const btnEl = document.getElementById('buyBtn'+plan);
-  const email = emailEl ? emailEl.value.trim() : '';
-
-  if(!email || !email.includes('@')){
-    showStatus(statusEl,'Please enter a valid email','err');
-    return;
-  }
-
-  btnEl.disabled = true;
-  btnEl.textContent = 'Processing...';
-  showStatus(statusEl,'Preparing payment...','loading');
-
-  const refCode = sessionStorage.getItem('refCode') || REF_CODE || '';
-
-  // 記錄 email + plan + refCode 到 n8n
-  fetch(N8N_COLLECT,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({email, plan, refCode, action:'pre_purchase', timestamp:new Date().toISOString()}),
-    mode:'no-cors'
-  }).catch(()=>{});
-
-  // 跳轉 Gumroad（帶 email 預填）
-  const gumUrl = GUMROAD[plan] + '?email=' + encodeURIComponent(email)
-    + (refCode ? '&ref='+encodeURIComponent(refCode) : '');
-
+  const btnEl = document.getElementById('btn'+plan);
+  const email = emailEl.value.trim();
+  if(!email||!email.includes('@')){ showStatus(statusEl,'Please enter a valid email','err'); return; }
+  btnEl.disabled=true; btnEl.textContent='Processing...';
+  showStatus(statusEl,'Preparing...','loading');
+  const refCode = sessionStorage.getItem('refCode')||REF||'';
+  fetch(N8N_LANDING,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email,plan,refCode}),mode:'no-cors'}).catch(()=>{});
   setTimeout(()=>{
-    window.open(gumUrl, '_blank');
-    btnEl.disabled = false;
-    btnEl.textContent = 'Buy $'+plan+'/month →';
-    showStatus(statusEl,'Redirecting to payment... Check your email after purchase ✓','ok');
-  }, 600);
+    const url = GUMROAD[plan]+'?email='+encodeURIComponent(email)+(refCode?'&ref='+encodeURIComponent(refCode):'');
+    window.open(url,'_blank');
+    btnEl.disabled=false; btnEl.textContent='Buy $'+plan+'/month →';
+    showStatus(statusEl,'Redirecting to payment... Check email after purchase ✓','ok');
+  },700);
 }
 
-function showStatus(el, msg, type){
-  if(!el) return;
-  el.textContent = msg;
-  el.className = 'status-msg ' + type;
-}
+function showStatus(el,msg,type){if(!el)return;el.textContent=msg;el.className='status-msg '+type;}
 
-// 綁定按鈕
-document.getElementById('buyBtn10').addEventListener('click', ()=>handlePurchase('10'));
-document.getElementById('buyBtn15').addEventListener('click', ()=>handlePurchase('15'));
-
-// Enter 鍵
+document.getElementById('btn10').onclick=()=>buy('10');
+document.getElementById('btn15').onclick=()=>buy('15');
 ['email10','email15'].forEach(id=>{
-  const el = document.getElementById(id);
-  if(el) el.addEventListener('keydown', e=>{ if(e.key==='Enter') handlePurchase(id.replace('email','')); });
+  document.getElementById(id).addEventListener('keydown',e=>{ if(e.key==='Enter') buy(id.replace('email','')); });
 });
 </script>
 </body>

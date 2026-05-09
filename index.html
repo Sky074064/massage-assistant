@@ -91,6 +91,17 @@ nav{background:var(--bg3);border-bottom:1px solid var(--border);padding:12px 32p
 /* DISCLAIMER */
 .disclaimer{max-width:680px;margin:0 auto 40px;padding:0 24px}
 .disclaimer-box{background:#1c1400;border:1px solid #3d2f00;border-radius:8px;padding:14px 18px;font-size:12px;color:var(--gold);line-height:1.7}
+/* SUPPORT */
+.support-section{max-width:680px;margin:0 auto 80px;padding:0 24px}
+.support-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:500px){.support-grid{grid-template-columns:1fr}}
+.support-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px;text-align:center;transition:.15s}
+.support-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.support-card .s-icon{font-size:28px;margin-bottom:10px}
+.support-card h3{font-size:14px;font-weight:700;color:#e6edf3;margin-bottom:6px}
+.support-card p{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.support-card .s-btn{display:inline-block;padding:9px 20px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--blue);font-size:12px;font-weight:700;text-decoration:none;transition:.15s}
+.support-card .s-btn:hover{background:var(--bg2);border-color:var(--blue)}
 /* FOOTER */
 footer{text-align:center;padding:28px 24px;font-size:11px;color:var(--dim);border-top:1px solid var(--border)}
 </style>
@@ -100,8 +111,11 @@ footer{text-align:center;padding:28px 24px;font-size:11px;color:var(--dim);borde
 <nav>
   <span class="nav-logo">🖐</span>
   <span class="nav-name">Massage Assistant</span>
-  <span class="nav-badge">v6.0</span>
+  <span class="nav-badge">v6.2</span>
   <div class="nav-right">
+    <a href="#pricing" style="color:var(--muted);font-size:13px;font-weight:700;text-decoration:none;margin-right:6px">Pricing</a>
+    <a href="#support" style="color:var(--muted);font-size:13px;font-weight:700;text-decoration:none;margin-right:6px">Support</a>
+    <a href="#faq" onclick="document.getElementById('faq').style.display='block';setTimeout(()=>document.getElementById('faq').scrollIntoView({behavior:'smooth'}),50);return false;" style="color:var(--muted);font-size:13px;font-weight:700;text-decoration:none;margin-right:12px">FAQ</a>
     <a class="btn-install" href="https://chrome.google.com/webstore/detail/jdobaapefedhjokgbedlpghedhjibjhm" target="_blank">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#fff"/><circle cx="12" cy="12" r="4" fill="#4285F4"/><path d="M12 8a4 4 0 0 1 3.46 2H20a8 8 0 1 0 0 4h-4.54A4 4 0 1 1 12 8z" fill="#4285F4" opacity=".3"/></svg>
       Add to Chrome
@@ -127,7 +141,7 @@ footer{text-align:center;padding:28px 24px;font-size:11px;color:var(--dim);borde
 <!-- DEMO LOG -->
 <div class="demo-wrap">
   <div class="demo-box">
-    <div class="log-blue">🚀 v6.0 starting...</div>
+    <div class="log-blue">🚀 v6.2 starting...</div>
     <div class="log-ok">══ Week 1: 13/04/2026 ~ 19/04/2026 ══</div>
     <div class="log-ok">╔══ Miranda Walsh · Remedial massage 60mins</div>
     <div class="log-dim">  ⏱ Detected 60min → using 60min template</div>
@@ -251,16 +265,96 @@ footer{text-align:center;padding:28px 24px;font-size:11px;color:var(--dim);borde
   </div>
 </div>
 
+<!-- SUPPORT & FEEDBACK -->
+<div class="support-section" id="support">
+  <div class="section-title">Need Help?</div>
+  <p class="section-sub">We're here to help you get the most out of Massage Assistant</p>
+  <div class="support-grid">
+    <div class="support-card">
+      <div class="s-icon">🐛</div>
+      <h3>Report a Bug</h3>
+      <p>Something not working right? Let us know and we'll fix it as soon as possible.</p>
+      <a class="s-btn" href="feedback.html#bug" target="_blank">Report Bug →</a>
+    </div>
+    <div class="support-card">
+      <div class="s-icon">💡</div>
+      <h3>Feature Request</h3>
+      <p>Have an idea to make the extension better? We'd love to hear your suggestions.</p>
+      <a class="s-btn" href="feedback.html#feature" target="_blank">Suggest Feature →</a>
+    </div>
+    <div class="support-card">
+      <div class="s-icon">📧</div>
+      <h3>Email Support</h3>
+      <p>Questions about your license, billing, or anything else? Email us directly.</p>
+      <a class="s-btn" href="feedback.html#contact">Email Us →</a>
+    </div>
+    <div class="support-card">
+      <div class="s-icon">❓</div>
+      <h3>FAQ</h3>
+      <p>Common questions about setup, templates, body chart detection, and billing.</p>
+      <a class="s-btn" href="#faq" onclick="document.getElementById('faq').style.display='block';setTimeout(()=>document.getElementById('faq').scrollIntoView({behavior:'smooth'}),50);return false;">View FAQ →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ (hidden by default) -->
+<div class="how-section" id="faq" style="display:none">
+  <div class="section-title" style="margin-bottom:24px">Frequently Asked Questions</div>
+  <div class="step-item">
+    <div class="step-num">?</div>
+    <div class="step-content">
+      <h4>How does the free trial work?</h4>
+      <p>You get 10 free notes to try all features. No credit card required. After 10 notes, choose a plan to continue.</p>
+    </div>
+  </div>
+  <div class="step-item">
+    <div class="step-num">?</div>
+    <div class="step-content">
+      <h4>What happens if I run out of notes?</h4>
+      <p>The extension will stop auto-filling. You can purchase a new plan or refer friends to earn bonus notes.</p>
+    </div>
+  </div>
+  <div class="step-item">
+    <div class="step-num">?</div>
+    <div class="step-content">
+      <h4>Does it work with all mybookrelax.com accounts?</h4>
+      <p>Yes — it works with any therapist account on mybookrelax.com that uses the standard treatment notes interface.</p>
+    </div>
+  </div>
+  <div class="step-item">
+    <div class="step-num">?</div>
+    <div class="step-content">
+      <h4>Can I cancel anytime?</h4>
+      <p>Yes. Your plan is month-to-month. You can cancel via Gumroad and your remaining notes will still be usable until they run out.</p>
+    </div>
+  </div>
+  <div class="step-item">
+    <div class="step-num">?</div>
+    <div class="step-content">
+      <h4>Is my data safe?</h4>
+      <p>The extension only runs on mybookrelax.com. Your templates are stored locally in Chrome. We never access your patient data.</p>
+    </div>
+  </div>
+</div>
+
 <!-- DISCLAIMER -->
 <div class="disclaimer">
   <div class="disclaimer-box">⚠️ <strong>Disclaimer:</strong> This tool assists in recording treatments that have actually occurred. Users are responsible for ensuring all content accurately reflects the services provided. Not for generating fictitious records. This extension is not affiliated with mybookrelax.com.</div>
 </div>
 
-<footer>Massage Assistant v6.0 · mybookrelax.com only · Questions: sky074064@gmail.com</footer>
+<footer>
+  <div style="margin-bottom:12px">
+    <a href="#pricing" style="margin:0 12px">Pricing</a>
+    <a href="#support" style="margin:0 12px">Support</a>
+    <a href="#faq" onclick="document.getElementById('faq').style.display='block';setTimeout(()=>document.getElementById('faq').scrollIntoView({behavior:'smooth'}),50);return false;" style="margin:0 12px">FAQ</a>
+    <a href="mailto:sky074064@gmail.com" style="margin:0 12px">Contact</a>
+  </div>
+  Massage Assistant v6.2 · mybookrelax.com only · Questions: sky074064@gmail.com
+</footer>
 
 <script>
 const REF = new URLSearchParams(location.search).get('ref') || '';
-// ★ Google Apps Script 後端�URL（取代 n8n）
+// ★ Google Apps Script 後端 URL（取代 n8n）
 const GAS_BASE_URL = 'https://script.google.com/macros/s/AKfycbz18o3CeS5vBwhdHt4HEJT3oq_dsIQnMMh8O9I3-YO2CERsdvX0F4l-Gne1uwZEokVyGg/exec';
 
 if(REF){

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sky074064.github.io/massage-assistant/sitemap.xml

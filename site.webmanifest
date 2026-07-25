@@ -1,0 +1,15 @@
+{
+  "name": "NoteFlow - AI Notes for BookRelax",
+  "short_name": "NoteFlow",
+  "start_url": "https://sky074064.github.io/massage-assistant/",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#58a6ff",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

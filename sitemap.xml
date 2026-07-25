@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://sky074064.github.io/massage-assistant/</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <image:image>
       <image:loc>https://sky074064.github.io/massage-assistant/noteflow-promo-marquee-1400x560.png</image:loc>
       <image:caption>NoteFlow BookRelax treatment notes Chrome extension</image:caption>
@@ -11,7 +11,7 @@
   </url>
   <url>
     <loc>https://sky074064.github.io/massage-assistant/bookrelax-chrome-extension.html</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <image:image>
       <image:loc>https://sky074064.github.io/massage-assistant/noteflow-promo-small-440x280.png</image:loc>
       <image:caption>BookRelax Chrome extension for massage treatment notes</image:caption>
@@ -19,7 +19,7 @@
   </url>
   <url>
     <loc>https://sky074064.github.io/massage-assistant/massage-soap-notes.html</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <image:image>
       <image:loc>https://sky074064.github.io/massage-assistant/noteflow-promo-small-440x280.png</image:loc>
       <image:caption>Massage SOAP notes and treatment note templates for BookRelax</image:caption>
@@ -27,7 +27,7 @@
   </url>
   <url>
     <loc>https://sky074064.github.io/massage-assistant/install-chrome-extension.html</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <image:image>
       <image:loc>https://sky074064.github.io/massage-assistant/assets/welcome/step-1-pin-noteflow.svg</image:loc>
       <image:caption>Install and pin the NoteFlow Chrome extension</image:caption>
@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://sky074064.github.io/massage-assistant/welcome-new-user.html</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <image:image>
       <image:loc>https://sky074064.github.io/massage-assistant/assets/welcome/step-5-start-autofill.svg</image:loc>
       <image:caption>NoteFlow setup guide for BookRelax auto-fill</image:caption>
@@ -43,6 +43,6 @@
   </url>
   <url>
     <loc>https://sky074064.github.io/massage-assistant/privacy.html</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
   </url>
 </urlset>

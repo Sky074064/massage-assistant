@@ -50,8 +50,8 @@
   "url": "https://sky074064.github.io/massage-assistant/",
   "offers": [
     {"@type": "Offer", "price": "0", "priceCurrency": "AUD", "description": "Free 20 notes to try"},
-    {"@type": "Offer", "price": "10", "priceCurrency": "AUD", "description": "150 notes per month"},
-    {"@type": "Offer", "price": "15", "priceCurrency": "AUD", "description": "300 notes per month"}
+    {"@type": "Offer", "price": "4.99", "priceCurrency": "AUD", "description": "Pro: 120 notes per month"},
+    {"@type": "Offer", "price": "8.99", "priceCurrency": "AUD", "description": "Pro+: 300 notes per month"}
   ],
   "isAccessibleForFree": true
 }
@@ -287,9 +287,9 @@ footer{text-align:center;padding:28px 24px;font-size:11px;color:var(--dim);borde
   <div class="free-banner">🎁 Free plan: 20 notes to try · No card required to install</div>
   <div class="price-cards">
     <div class="price-card" id="card10">
-      <div class="price-amount"><sup>$</sup>10</div>
+      <div class="price-amount"><sup>$</sup>4.99</div>
       <div class="price-cycle">AUD / month</div>
-      <div class="price-notes">150 notes</div>
+      <div class="price-notes">Pro · 120 notes / month</div>
       <ul class="price-perks">
         <li>All features</li>
         <li>5 template slots</li>
@@ -299,15 +299,15 @@ footer{text-align:center;padding:28px 24px;font-size:11px;color:var(--dim);borde
       <div class="price-form">
         <label>Email (key sent here)</label>
         <input type="email" id="email10" placeholder="your@email.com">
-        <button class="price-btn" id="btn10">Buy $10/month →</button>
+        <button class="price-btn" id="btn10">Buy Pro — $4.99/month →</button>
         <div class="status-msg" id="status10"></div>
       </div>
     </div>
     <div class="price-card pop" id="card15">
       <div class="pop-tag">Best Value</div>
-      <div class="price-amount"><sup>$</sup>15</div>
+      <div class="price-amount"><sup>$</sup>8.99</div>
       <div class="price-cycle">AUD / month</div>
-      <div class="price-notes">300 notes</div>
+      <div class="price-notes">Pro+ · 300 notes / month</div>
       <ul class="price-perks">
         <li>All features</li>
         <li>5 template slots</li>
@@ -317,7 +317,7 @@ footer{text-align:center;padding:28px 24px;font-size:11px;color:var(--dim);borde
       <div class="price-form">
         <label>Email (key sent here)</label>
         <input type="email" id="email15" placeholder="your@email.com">
-        <button class="price-btn" id="btn15">Buy $15/month →</button>
+        <button class="price-btn" id="btn15">Buy Pro+ — $8.99/month →</button>
         <div class="status-msg" id="status15"></div>
       </div>
     </div>
@@ -453,7 +453,7 @@ if(REF){
   }).catch(()=>{});
 }
 
-const GUMROAD = {'10':'https://skyautofitf.gumroad.com/l/xlfxtc','15':'https://skyautofitf.gumroad.com/l/rywkm'};
+const GUMROAD = {'10':'https://skyautofitf.gumroad.com/l/kdxtum','15':'https://skyautofitf.gumroad.com/l/jrdupe'};
 
 function buy(plan){
   const emailEl = document.getElementById('email'+plan);
@@ -471,7 +471,7 @@ function buy(plan){
   fetch(GAS_BASE_URL + '?route=landing-purchase',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({email,plan,refCode}),mode:'no-cors'}).catch(()=>{});
   setTimeout(()=>{
-    btnEl.disabled=false; btnEl.textContent='Buy $'+plan+'/month →';
+    btnEl.disabled=false; btnEl.textContent=plan==='15'?'Buy Pro+ — $8.99/month →':'Buy Pro — $4.99/month →';
   },2000);
 }
 
